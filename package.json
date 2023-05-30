@@ -1,0 +1,27 @@
+{
+  "name": "cms",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vitejs/plugin-legacy": "^4.0.4",
+    "ant-design-vue": "^3.2.20",
+    "pinia": "^2.1.3",
+    "postcss-pxtorem": "^6.0.0",
+    "vue": "^3.2.47",
+    "vue-email-editor": "^2.0.0",
+    "vue-router": "^4.2.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.1.0",
+    "less": "^4.1.3",
+    "less-loader": "^11.1.0",
+    "postcss": "^8.4.12",
+    "postcss-html": "^1.3.0"
+  }
+}
