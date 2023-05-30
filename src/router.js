@@ -10,7 +10,7 @@ Object.keys(modules).forEach((path)=> {
 
     routes.push({
         path: `${name === 'index' ? '/' : '/' + name.toLowerCase()}`,
-        name,
+        name: name === 'index' ? 'Email editor': name,
         component: component.default || component
     });
 })
