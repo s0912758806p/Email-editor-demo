@@ -9,13 +9,12 @@
         <EmailEditor 
           ref="emailEditorRef"
           class="email-ediotr"
-          :min-height="minHeight"
-          :project-id="projectId"
-          :locale="locale"
-          :display-mode="displayMode"
+          :minHeight="minHeight"
+          :projectId="projectId"
           :tools="state.tools"
           :options="state.options"
-          @load="editorLoaded"/>
+          @load="editorLoaded"
+        />
       </a-layout-content>
 
       <input
@@ -38,21 +37,11 @@ const uploadRef = ref(null)
 
 const minHeight = ref('500px')
 const projectId = ref(1) // 1:全功能展示模式(proxy記得關掉)
-const locale = ref('zh-TW')
-const displayMode = ref('email')
 const image = ref(undefined)
 
 const state = reactive({
 tools: {},
 options: {},
-appearance: {
-  theme: 'dark',
-  panels: {
-    tools: {
-      dock: 'right'
-    }
-  }
-},
 fileList: [],
 done: () => {}
 })
@@ -80,12 +69,28 @@ reader.onload = (e)=> {
 reader.readAsDataURL(imageFile);
 }
 
+const editorSetting = () => {
+emailEditorRef.value.editor.setLocale('zh-TW')
+
+emailEditorRef.value.editor.setDisplayMode('web')
+
+emailEditorRef.value.editor.setAppearance({
+  theme: 'light',
+    panels: {
+      tools: {
+        dock: 'right'
+      }
+    }
+})
+}
+
 const editorLoaded = () => {
-// console.log(emailEditorRef.value);
 if(localStorage.getItem('saveDesign')) {
   const save = JSON.parse(localStorage.getItem('saveDesign'))
   emailEditorRef.value.editor.loadDesign(save)
 }
+
+editorSetting()
 
 if(!isLocalDomain.value) {
   emailEditorRef.value.editor.registerCallback('selectImage', (data, done)=> {
