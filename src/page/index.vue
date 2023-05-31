@@ -31,10 +31,10 @@
 <script setup>
 import { computed, reactive, ref } from 'vue'
 import { EmailEditor } from 'vue-email-editor'
+import editorApi from '@/assets/api/editorApi.js'
 
 const emailEditorRef = ref(null)
 const uploadRef = ref(null)
-
 const minHeight = ref('500px')
 const projectId = ref(1) // 1:全功能展示模式(proxy記得關掉)
 const image = ref(undefined)
@@ -52,21 +52,27 @@ const openUpload = () => {
 uploadRef.value.click()
 }
 
-const handleChange = (info) => {
-image.value = undefined
-const imageFile = info.target?.files[0]
-const reader = new FileReader();
+const imageUpload = async () => {
+const { retCode: code, retData: data } = await editorApi.imageUpload({
+  picture: image.value
+})
 
-reader.onload = (e)=> {
-  image.value = e.target.result
-
-  if(image.value) {
-    const done = state.done
-    done({url: 'https://www.antdv.com/assets/logo.1ef800a8.svg'})
-  }
+if(code === 200) {
+  return `${import.meta.env.VITE_BASE_URL}${data.img_url}`
+}
 }
 
-reader.readAsDataURL(imageFile);
+const handleChange = async (info) => {
+image.value = undefined
+const imageFile = info.target?.files[0]
+
+image.value = imageFile
+
+if(image.value) {
+  const url = await imageUpload()
+  const done = state.done
+  done({ url })
+}
 }
 
 const editorSetting = () => {
@@ -92,7 +98,7 @@ if(localStorage.getItem('saveDesign')) {
 
 editorSetting()
 
-if(!isLocalDomain.value) {
+if(isLocalDomain.value) {
   emailEditorRef.value.editor.registerCallback('selectImage', (data, done)=> {
     openUpload()
     state.done = done

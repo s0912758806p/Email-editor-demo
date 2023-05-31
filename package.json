@@ -1,24 +1,31 @@
 {
   "name": "cms",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "cross-env vite",
+    "master": "cross-env vite",
+    "prod": "cross-env vite",
+    "build:local": "cross-env vite build --mode NODE_ENV=development",
+    "build:master": "cross-env vite build --mode NODE_ENV=master",
+    "build:prod": "cross-env vite build --mode NODE_ENV=production",
     "preview": "vite preview"
   },
   "dependencies": {
     "@vitejs/plugin-legacy": "^4.0.4",
     "ant-design-vue": "^3.2.20",
+    "axios": "^1.4.0",
     "pinia": "^2.1.3",
     "postcss-pxtorem": "^6.0.0",
+    "vite-plugin-compression": "^0.5.1",
     "vue": "^3.2.47",
     "vue-email-editor": "^2.0.0",
     "vue-router": "^4.2.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
+    "cross-env": "^7.0.3",
     "less": "^4.1.3",
     "less-loader": "^11.1.0",
     "postcss": "^8.4.12",
