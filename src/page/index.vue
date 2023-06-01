@@ -1,5 +1,5 @@
 <template>
-  <div class="email-editor">
+  <div class="email-editor-box">
       <div class="email-editor-button-box">
         <a-button class="editor-button" type="primary" v-text="'儲存設計'" @click="saveDesign()"/>
         <a-button class="editor-button" type="primary" v-text="'匯出HTML'" @click="exportHTML()"/>
@@ -8,7 +8,7 @@
       <a-layout-content>
         <EmailEditor 
           ref="emailEditorRef"
-          class="email-ediotr"
+          class="email-editor"
           :minHeight="minHeight"
           :projectId="projectId"
           :tools="state.tools"
@@ -130,6 +130,10 @@ emailEditorRef.value.editor.exportHtml((data)=> {
 </script>
 
 <style lang="less" scoped>
+.email-editor-box {
+overflow-x: auto;
+}
+
 .email-editor-button-box {
 padding-top: 16px;
 padding-left: 16px;
@@ -139,11 +143,17 @@ padding-left: 16px;
 }
 }
 
-.email-ediotr {
+.email-editor {
 height: 700px;
+overflow: hidden;
 }
 
 .no-see {
 visibility: hidden;
+}
+
+::v-deep(.ant-layout-content) {
+padding: 0;
+min-width: 1024px;
 }
 </style>
