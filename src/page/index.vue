@@ -98,7 +98,7 @@ if(localStorage.getItem('saveDesign')) {
 
 editorSetting()
 
-if(isLocalDomain.value) {
+if(!isLocalDomain.value) {
   emailEditorRef.value.editor.registerCallback('selectImage', (data, done)=> {
     openUpload()
     state.done = done
