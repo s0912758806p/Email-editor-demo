@@ -43,7 +43,7 @@ const successLogin = (data) => {
     Object.keys(data).forEach((key)=> {
         if(Object.keys(userInfoStore).includes(key)) {
             userInfoStore[key] = data[key]
-            
+
             if(typeof data[key] === 'string') {
                 Cookie.set(key, JSON.stringify(data[key]), {
                     expires: 2
@@ -51,6 +51,8 @@ const successLogin = (data) => {
             }
         }
     })
+
+    userInfoStore.isLoginNow()
 }
 
 const login = async () => {

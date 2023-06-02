@@ -1,13 +1,13 @@
 <template>
-  <BaseLayout  v-if="userInfoStore.isLogin" />
+  <BaseLayout v-if="userInfoStore.isLogin" />
   <Login v-else />
 </template>
 
 <script setup>
+import { onMounted } from 'vue'
 import { useUserInfoStore } from '@/store/userInfo'
 import BaseLayout from '@/layout/baseLayout.vue'
 import Login from '@/components/Login'
-import { onMounted } from 'vue'
 
 const userInfoStore = useUserInfoStore()
 
