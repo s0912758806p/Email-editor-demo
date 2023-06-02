@@ -5,7 +5,7 @@
       :trigger="null" 
       collapsible
     >
-      <div class="logo" />
+      <div class="logo" v-text="'GR CMS'" />
       <a-menu v-model:selectedKeys="state.selectedKeys" mode="inline" :theme="'dark'">
         <a-menu-item key="1">
           <html5-outlined />
@@ -89,9 +89,15 @@ const logout = () => {
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     height: 32px;
-    background: rgba(255, 255, 255, 0.3);
-    margin: 16px;
+    margin: 16px 0;
+    font-size: 32px;
+    font-style: italic;
+    color: #fff;
 }
 
 .site-layout {
