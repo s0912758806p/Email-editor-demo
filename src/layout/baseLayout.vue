@@ -5,7 +5,7 @@
       :trigger="null" 
       collapsible
     >
-      <div class="logo" v-text="'GR CMS'" />
+      <div class="logo" :class="{'logo-size': collapsed}" v-text="'Viva CMS'" />
       <a-menu v-model:selectedKeys="state.selectedKeys" mode="inline" :theme="'dark'">
         <a-menu-item key="1">
           <html5-outlined />
@@ -98,6 +98,11 @@ const logout = () => {
     font-size: 32px;
     font-style: italic;
     color: #fff;
+    transition: all 0.3s;
+
+    &.logo-size {
+      font-size: 16px !important;
+    }
 }
 
 .site-layout {
