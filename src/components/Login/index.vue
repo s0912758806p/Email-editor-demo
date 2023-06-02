@@ -1,17 +1,27 @@
 <template>
     <div class="login">
        <div class="login-box">
-            <div class="login-title" v-text="'Viva CMS'"></div>
+            <div class="login-title" v-text="'Viva CMS'" />
             <div class="login-account login-input-box">
-                <div class="account-text" v-text="'Account:'"></div>
-                <a-input v-model:value="state.form.account"></a-input>
+                <div class="account-text" v-text="'Account:'" />
+                <a-input 
+                    v-model:value="state.form.account"
+                    placeholder="input account"
+                >
+                    <template #suffix>
+                        <user-outlined type="user" />
+                    </template>
+                </a-input>
             </div>
             <div class="login-password login-input-box">
-                <div class="password-text" v-text="'Password:'"></div>
-                <a-input v-model:value="state.form.password"></a-input>
+                <div class="password-text" v-text="'Password:'" />
+                <a-input-password 
+                    v-model:value="state.form.password"
+                    placeholder="input password"
+                />
             </div>
             <div class="login-button">
-                <a-button v-text="'LOGIN'" @click="login()"></a-button>
+                <a-button v-text="'LOGIN'" @click="login()" />
             </div>
        </div>
     </div>
@@ -19,6 +29,7 @@
 
 <script setup>
 import { onMounted, reactive } from "vue";
+import { UserOutlined } from '@ant-design/icons-vue';
 import { errorCode } from '@/util/errorCode.js'
 import { encrypt } from '@/util/encrypt.js'
 import { useUserInfoStore } from '@/store/userInfo'
@@ -89,7 +100,7 @@ onMounted(()=> {
 
     .login-box {
         width: 360px;
-        height: 360px;
+        height: 264px;
         padding: 16px;
         background: #fff;
         border-radius: 8px;
