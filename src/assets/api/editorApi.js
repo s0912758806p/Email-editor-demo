@@ -18,7 +18,7 @@ class editorApi extends baseApi {
             }
         })
 
-        return await this.request('bm/image/upload', 'post', formData, 'form')
+        return await this.request('your url', 'post', formData, 'form')
     }
 }
 

@@ -11,7 +11,7 @@ class settingApi extends baseApi {
      * @returns 
      */
     static async login(params = {}) {
-        return await this.request('bm/Login', 'post', params)
+        return await this.request('your url', 'post', params)
     }
 }
 
